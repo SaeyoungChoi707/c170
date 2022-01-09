@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Menu Card</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+  <script src="https://raw.githack.com/fcor/arjs-gestures/master/dist/gestures.js"></script>
+  <script src="buttOn.js"></script>
+  <script src="marker.js"></script>
+  <link href="style.css" rel="stylesheet">
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+  
+  <!--Marker Handler Src-->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-analytics.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyByZ3NOukY5IroOdZ202AJe6APTyFxa3Wg",
+      authDomain: "toy-cart-lol.firebaseapp.com",
+      projectId: "toy-cart-lol",
+      storageBucket: "toy-cart-lol.appspot.com",
+      messagingSenderId: "201824526312",
+      appId: "1:201824526312:web:b6570899964f81a6ea4e5d"
+    };
+    const app = initializeApp(firebaseConfig);
+    firebase.analytics()
+  </script>
+
+
+</head>
+
+<body style="margin : 0px; overflow: hidden;">
+
+  <a-scene 
+    embedded vr-mode-ui="enabled: false"     
+    arjs="sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960;debugUIEnabled: false;"
+    gesture-detector create-button>
+
+    <!-- Camera -->
+    <a-entity camera></a-entity>
+
+    <a-assets>
+      <a-asset-item id="toy" src="toy_rabbit/scene.gltf"></a-asset-item>
+    </a-assets>
+    <a-marker id="toymarker" type="pattern" url="pattern-rabbit.patt" cursor="rayOrigin:mouse"></a-marker>
+
+    <a-entity id="toy3d" position="-2 0 0" scale="0.05 0.05 0.05" gltf-model="#rabbitmodel" gesture-handler></a-entity>
+
+    <a-plane position="0 0 0" width="1.5" height="1.5" rotation="-90 0 0">
+    <a-plane position="0 0.89 002" width="1.48" height="0.3" rotation="0 0 0" color="#f0c30f">
+      <a-entity position="0 0 0.1" rotation="0 0 0"
+      text="font:monoid;value:SCARY RABBIT PLUSHIE;color:black;width:1.8;height:1.8;align:center"></a-entity>
+    </a-plane>
+      <a-entity position="0 0 0.1" rotation="0 0 0"
+      text="font:monoid;color:black;width:2;align:center
+      value:Definitely not from a haunted house!!\n\n Definitely won't haunt you!!\n\n BUY NOW!!"></a-entity>
+    </a-plane>
+
+  </a-scene>
+
+  <!-- Button Main Div -->
+  <div id="button-div"></div>
+</body>
+
+</html>
